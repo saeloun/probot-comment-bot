@@ -7,7 +7,7 @@ const extractAssignee = (body: String) =>{
         const assignee = assigneeComment[0]
         return [assignee.substr(1, assignee.length - 3)];
     }else {
-        return null
+        return []
     }
 }
 
@@ -22,7 +22,7 @@ export = (app: Application) => {
       console.log("Payload Comment Body", extractAssignee(context.payload.comment.body))
       const assignees = extractAssignee(context.payload.comment.body)
 
-      if (!!assignees){
+      if (assignees.length > 0){
           // First remove all existing assignees
           const currentAssignees = await context.github.issues.listAssignees(context.issue())
           await context.github.issues.removeAssignees(context.issue({assignees: currentAssignees.data.map(user => user.login)}))
