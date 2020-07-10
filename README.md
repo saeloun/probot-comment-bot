@@ -24,4 +24,4 @@ For more, check out the [Contributing Guide](CONTRIBUTING.md).
 
 ## License
 
-[ISC](LICENSE) © 2020 Vipul A M <vipulnsward@gmail.com>
+[MIT](LICENSE) © 2020 Vipul A M

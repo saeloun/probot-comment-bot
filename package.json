@@ -4,7 +4,7 @@
   "private": true,
   "description": "Perform various actions from Issue Comments",
   "author": "Vipul A M <vipulnsward@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "repository": "https://github.com/vipulnsward/comment-bot.git",
   "homepage": "https://github.com/vipulnsward/comment-bot",
   "bugs": "https://github.com/vipulnsward/comment-bot/issues",
