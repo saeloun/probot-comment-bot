@@ -1,6 +1,11 @@
 # CommentBot
 
-> A GitHub App built with [Probot](https://github.com/probot/probot) that Perform various actions from Issue Comments
+> A GitHub App built with [Probot](https://github.com/probot/probot)
+
+A Simple Comment Bot that just does one thing: 
+- Checks usage of @username _A or @username _a in a Issue or PR comment
+- Remove existing assignees of the Issue/PR
+- Assign the current Issue/PR to @username
 
 ## Setup
 
