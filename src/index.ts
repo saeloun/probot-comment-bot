@@ -31,11 +31,4 @@ export = (app: Application) => {
           await context.github.issues.addAssignees(newAssignee)
       }
   })
-
-    app.on('issue', async (context) => {
-        console.log("Payload", context.payload)
-        // const issueComment = context.issue({ body: 'Thanks for opening this issue!' })
-        // await context.github.issues.createComment(issueComment)
-    })
-
 }
