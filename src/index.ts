@@ -45,9 +45,27 @@ export = (app: Application) => {
     })
 
     app.on('issue_comment', async (context) => {
-        console.log("Payload Comment Body", extractAssignee(context.payload.comment.body))
-        const newAssignees = extractAssignee(context.payload.comment.body)
+        const description = context.payload.issue.body;
+        const newAssignees = extractAssignee(description)
 
+        performAssignment(context, newAssignees)
+    })
+
+    app.on(['pull_request.opened', 'pull_request.edited'], async (context) => {
+        const description = context.payload.pull_request.body;
+        const newAssignees = extractAssignee(description)
+        performAssignment(context, newAssignees)
+    })
+
+    app.on(['pull_request_review_comment.created', 'pull_request_review_comment.edited'], async (context) => {
+        const description = context.payload.comment.body;
+        const newAssignees = extractAssignee(description)
+        performAssignment(context, newAssignees)
+    })
+
+    app.on('pull_request_review.submitted', async (context) => {
+        const description = context.payload.review.body;
+        const newAssignees = extractAssignee(description || "")
         performAssignment(context, newAssignees)
     })
 }
