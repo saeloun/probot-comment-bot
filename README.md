@@ -7,6 +7,8 @@ A Simple Comment Bot that just does one thing:
 - Remove existing assignees of the Issue/PR
 - Assign the current Issue/PR to @username
 
+Install from GitHub Apps: https://github.com/apps/assignee-bot
+
 ## Setup
 
 ```sh

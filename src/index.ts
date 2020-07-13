@@ -12,7 +12,7 @@ const extractAssignee = (body: String) => {
     }
 }
 
-const performAssignment = async (context: Context<any>, newAssignees: Array<string>,  ) => {
+const performAssignment = async (context: Context<any>, newAssignees: Array<string>) => {
     if (newAssignees.length > 0) {
         // First remove all existing assignees
         const currentIssue = await context.github.issues.get(context.issue())
@@ -43,7 +43,7 @@ export = (app: Application) => {
 
         performAssignment(context, newAssignees)
     })
-    
+
     app.on('issue_comment', async (context) => {
         console.log("Payload Comment Body", extractAssignee(context.payload.comment.body))
         const newAssignees = extractAssignee(context.payload.comment.body)
