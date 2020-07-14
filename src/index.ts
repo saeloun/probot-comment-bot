@@ -3,7 +3,7 @@ import {trim, isEqual} from "lodash";
 
 const extractAssignee = (body: String) => {
     const regex = /@[\w-]+\s_(a|A)/g;
-    const assigneeComment = body.match(regex);
+    const assigneeComment = body.replace(/\n|\r/g, "").match(regex);
     if (!!assigneeComment) {
         const assigneeStr = assigneeComment[0]
         return [trim(assigneeStr.split(" ")[0].replace("@", ""))];
