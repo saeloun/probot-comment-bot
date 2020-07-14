@@ -21,6 +21,7 @@ const performAssignment = async (context: Context<any>, newAssignees: Array<stri
             console.log("Already assigned, doing nothing.")
             // Do nothing
         } else {
+            console.log("Performing Assignment for ", newAssignees)
             // Remove all existing assignee
             await context.github.issues.removeAssignees(context.issue({assignees: currentIssue.data.assignees.map(user => user.login)}))
             // Then assign new ones
@@ -54,18 +55,21 @@ export = (app: Application) => {
     app.on(['pull_request.opened', 'pull_request.edited'], async (context) => {
         const description = context.payload.pull_request.body;
         const newAssignees = extractAssignee(description)
+
         performAssignment(context, newAssignees)
     })
 
     app.on(['pull_request_review_comment.created', 'pull_request_review_comment.edited'], async (context) => {
         const description = context.payload.comment.body;
         const newAssignees = extractAssignee(description)
+
         performAssignment(context, newAssignees)
     })
 
     app.on('pull_request_review.submitted', async (context) => {
         const description = context.payload.review.body;
         const newAssignees = extractAssignee(description || "")
+        
         performAssignment(context, newAssignees)
     })
 }
