@@ -39,6 +39,7 @@ const performAssignment = async (context: Context<any>, newAssignees: Array<stri
 
 export = (app: Application) => {
     app.on(['issues.opened', 'issues.edited'], async (context) => {
+        console.log(context.payload)
         const description = context.payload.issue.body;
         const newAssignees = extractAssignee(description)
 
@@ -46,6 +47,7 @@ export = (app: Application) => {
     })
 
     app.on('issue_comment', async (context) => {
+        console.log(context.payload)
         const description = context.payload.issue.body;
         const newAssignees = extractAssignee(description)
 
@@ -53,6 +55,7 @@ export = (app: Application) => {
     })
 
     app.on(['pull_request.opened', 'pull_request.edited'], async (context) => {
+        console.log(context.payload)
         const description = context.payload.pull_request.body;
         const newAssignees = extractAssignee(description)
 
@@ -60,6 +63,7 @@ export = (app: Application) => {
     })
 
     app.on(['pull_request_review_comment.created', 'pull_request_review_comment.edited'], async (context) => {
+        console.log(context.payload)
         const description = context.payload.comment.body;
         const newAssignees = extractAssignee(description)
 
@@ -67,9 +71,10 @@ export = (app: Application) => {
     })
 
     app.on('pull_request_review.submitted', async (context) => {
+        console.log(context.payload)
         const description = context.payload.review.body;
         const newAssignees = extractAssignee(description || "")
-        
+
         performAssignment(context, newAssignees)
     })
 }
