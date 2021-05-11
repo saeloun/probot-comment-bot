@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@types/lodash": "^4.14.157",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "probot": "^9.5.3"
   },
   "devDependencies": {
